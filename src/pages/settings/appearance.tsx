@@ -69,7 +69,7 @@ function ThemeConfig() {
         title='Theme' 
         description='Select the color theme for the dashboard.' 
       />
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl'>
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-full'>
         {options.map((opt) => (
           <button
             key={opt.value}
@@ -105,7 +105,7 @@ function LayoutConfig() {
         title='Layout' 
         description='Choose whether the sidebar should be expanded or collapsed by default.'
       />
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl'>
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-full'>
         {options.map((opt) => (
           <button
             key={opt.label}
@@ -131,7 +131,7 @@ function SidebarThemeConfig() {
 
   const options = [
     { value: 'default' as const, label: 'Default', color: 'bg-stone-200 dark:bg-stone-800', activeText: '', activeBorder: 'border-primary' },
-    { value: 'matrix' as const, label: 'Matrix', color: 'bg-emerald-500', activeText: 'text-emerald-500', activeBorder: 'border-emerald-500' },
+    { value: 'green' as const, label: 'Green', color: 'bg-emerald-500', activeText: 'text-emerald-500', activeBorder: 'border-emerald-500' },
     { value: 'cyan' as const, label: 'Cyan', color: 'bg-cyan-500', activeText: 'text-cyan-500', activeBorder: 'border-cyan-500' },
     { value: 'violet' as const, label: 'Violet', color: 'bg-violet-500', activeText: 'text-violet-500', activeBorder: 'border-violet-500' },
     { value: 'amber' as const, label: 'Amber', color: 'bg-amber-500', activeText: 'text-amber-500', activeBorder: 'border-amber-500' },
@@ -144,7 +144,7 @@ function SidebarThemeConfig() {
         title='Sidebar Theme' 
         description='Choose the background color of the sidebar menu.'
       />
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl'>
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-full'>
         {options.map((opt) => {
           const isActive = sidebarTheme === opt.value
           return (
@@ -195,7 +195,7 @@ function PrimaryColorConfig() {
         title='Primary Color' 
         description='Choose the main color used for buttons, links, and accents.'
       />
-      <div className='grid grid-cols-2 md:grid-cols-5 gap-3 max-w-xl'>
+      <div className='grid grid-cols-2 md:grid-cols-5 gap-3 max-w-full'>
         {options.map((opt) => {
           const isActive = primaryColor === opt.value
           return (

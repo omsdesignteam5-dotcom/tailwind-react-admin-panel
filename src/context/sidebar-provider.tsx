@@ -11,7 +11,7 @@ const STORAGE_KEY = 'admin-sidebar-state'
 const MOBILE_BREAKPOINT = 768
 
 export type SidebarLayout = 'expanded' | 'compact' | 'full'
-export type SidebarTheme = 'default' | 'matrix' | 'cyan' | 'violet' | 'amber' | 'frost'
+export type SidebarTheme = 'default' | 'green' | 'cyan' | 'violet' | 'amber' | 'frost'
 
 interface SidebarProviderState {
   layout: SidebarLayout
@@ -45,7 +45,7 @@ export function SidebarProvider({
 
   const [sidebarTheme, setSidebarThemeState] = useState<SidebarTheme>(() => {
     const stored = localStorage.getItem('admin-sidebar-theme')
-    if (['default', 'matrix', 'cyan', 'violet', 'amber', 'frost'].includes(stored as string)) {
+    if (['default', 'green', 'cyan', 'violet', 'amber', 'frost'].includes(stored as string)) {
       return stored as SidebarTheme
     }
     return 'default'

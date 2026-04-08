@@ -74,6 +74,27 @@ npm run build
 }
 ```
 
+## ထပ်မံပြင်ဆင်သင့်သော အချက်များ (Further Customizations)
+
+Template ကို စတင်အသုံးပြုသည့်အခါ မိမိလုပ်ငန်းလိုအပ်ချက်အရ အောက်ပါအချက်များကို ပြင်ဆင်ရန် လိုအပ်ပါမည်။
+
+### ၁။ စာမျက်နှာအသစ် ထည့်သွင်းခြင်း (Adding a New Page)
+1. **Page ဖန်တီးရန်:** `src/pages/` အောက်တွင် မိမိနှစ်သက်ရာ Folder နှင့် Component ဖိုင် (ဥပမာ- `src/pages/reports/reports.tsx`) ကို တည်ဆောက်ပါ။
+2. **Route သတ်မှတ်ရန်:** TanStack Router အသုံးပြုထားသောကြောင့် `src/routes/_authenticated/` (သို့မဟုတ် လိုအပ်သော route အောက်) တွင် `.lazy.tsx` ဖိုင် (ဥပမာ- `reports.lazy.tsx`) ကို ဖန်တီးပါ။ ပြီးလျှင် အောက်ပါအတိုင်းရေးပါ:
+   ```tsx
+   import { createLazyFileRoute } from '@tanstack/react-router'
+   import { ReportsPage } from '@/pages/reports/reports'
+
+   export const Route = createLazyFileRoute('/_authenticated/reports')({
+     component: ReportsPage,
+   })
+   ```
+3. **Sidebar Navigation တွင် ထည့်သွင်းရန်:** `src/components/layout/sidebar-data.ts` ဖိုင်ကိုဖွင့်ပြီး `navGroups` အတွင်းရှိ သက်ဆိုင်ရာ နေရာတွင် `url: '/reports'` စသဖြင့် ထည့်သွင်းပေးပါ။
+
+### ၂။ App Name နှင့် Logo ပြင်ဆင်ခြင်း (Updating App Name & Logo)
+- **Title (Tab Name):** Project ၏ အပြင်ဘက်ဆုံးမှာရှိတဲ့ `index.html` ဖိုင်ထဲကိုဝင်ရောက်ပြီး `<title>` tag ကို ပြင်ဆင်ပါ။
+- **Sidebar အတွင်းမှ အမည်:** `src/components/layout/sidebar.tsx` ဖိုင်ထဲရှိ "Admin Panel" ဆိုသော စာသားကို မိမိနှစ်သက်ရာ ကုမ္ပဏီအမည်ဖြင့် ပြောင်းလဲနိုင်ပါသည်။
+
 ---
 
 ## English Version
@@ -140,6 +161,27 @@ Update the values (oklch, hsl, or hex numeric code) of the following CSS variabl
   --primary-foreground: oklch(0.14 0 0);
 }
 ```
+
+### Further Customizations
+
+When starting a new project with this template, here are a few essential things you'll likely want to customize for your business requirements:
+
+#### 1. Adding a New Page
+1. **Create the Page component:** Create a new folder and `.tsx` file inside `src/pages/` (e.g., `src/pages/reports/reports.tsx`).
+2. **Setup the Route:** As the project uses TanStack Router, create a corresponding route file like `reports.lazy.tsx` inside `src/routes/_authenticated/` (or your desired route path).
+   ```tsx
+   import { createLazyFileRoute } from '@tanstack/react-router'
+   import { ReportsPage } from '@/pages/reports/reports'
+
+   export const Route = createLazyFileRoute('/_authenticated/reports')({
+     component: ReportsPage,
+   })
+   ```
+3. **Add to Sidebar Navigation:** Open `src/components/layout/sidebar-data.ts` and update the `navGroups` array to include your new route (e.g., set `url: '/reports'`).
+
+#### 2. Updating App Name & Logo
+- **Browser Tab Title:** Modify the `<title>` tag inside the root `index.html` file.
+- **Sidebar Brand Name:** Open `src/components/layout/sidebar.tsx` to find and replace the "Admin Panel" text with your own application name.
 
 ---
 

@@ -12,7 +12,7 @@ import { sidebarData } from './sidebar-data'
 
 export const SIDEBAR_THEME_CLASSES: Record<SidebarTheme, string> = {
   default: 'bg-sidebar',
-  matrix: 'sidebar-colored dark bg-emerald-600 border-emerald-600',
+  green: 'sidebar-colored dark bg-emerald-600 border-emerald-600',
   cyan: 'sidebar-colored dark bg-cyan-700 border-cyan-600',
   violet: 'sidebar-colored dark bg-violet-800 border-violet-600',
   amber: 'sidebar-colored dark bg-amber-700 border-amber-600',

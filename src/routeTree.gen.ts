@@ -20,6 +20,9 @@ const AuthenticatedIndexLazyRouteImport = createFileRoute('/_authenticated/')()
 const AuthenticatedUsersLazyRouteImport = createFileRoute(
   '/_authenticated/users',
 )()
+const AuthenticatedNotificationsLazyRouteImport = createFileRoute(
+  '/_authenticated/notifications',
+)()
 const AuthenticatedBlankPageLazyRouteImport = createFileRoute(
   '/_authenticated/blank-page',
 )()
@@ -153,6 +156,14 @@ const AuthenticatedUsersLazyRoute = AuthenticatedUsersLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/_authenticated/users.lazy').then((d) => d.Route),
 )
+const AuthenticatedNotificationsLazyRoute =
+  AuthenticatedNotificationsLazyRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/notifications.lazy').then((d) => d.Route),
+  )
 const AuthenticatedBlankPageLazyRoute =
   AuthenticatedBlankPageLazyRouteImport.update({
     id: '/blank-page',
@@ -543,6 +554,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof authLoginRoute
   '/sign-up': typeof authSignUpRoute
   '/blank-page': typeof AuthenticatedBlankPageLazyRoute
+  '/notifications': typeof AuthenticatedNotificationsLazyRoute
   '/users': typeof AuthenticatedUsersLazyRoute
   '/errors/401': typeof AuthenticatedErrors401LazyRoute
   '/errors/403': typeof AuthenticatedErrors403LazyRoute
@@ -587,6 +599,7 @@ export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/sign-up': typeof authSignUpRoute
   '/blank-page': typeof AuthenticatedBlankPageLazyRoute
+  '/notifications': typeof AuthenticatedNotificationsLazyRoute
   '/users': typeof AuthenticatedUsersLazyRoute
   '/': typeof AuthenticatedIndexLazyRoute
   '/errors/401': typeof AuthenticatedErrors401LazyRoute
@@ -634,6 +647,7 @@ export interface FileRoutesById {
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/sign-up': typeof authSignUpRoute
   '/_authenticated/blank-page': typeof AuthenticatedBlankPageLazyRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsLazyRoute
   '/_authenticated/users': typeof AuthenticatedUsersLazyRoute
   '/_authenticated/': typeof AuthenticatedIndexLazyRoute
   '/_authenticated/errors/401': typeof AuthenticatedErrors401LazyRoute
@@ -682,6 +696,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/sign-up'
     | '/blank-page'
+    | '/notifications'
     | '/users'
     | '/errors/401'
     | '/errors/403'
@@ -726,6 +741,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/sign-up'
     | '/blank-page'
+    | '/notifications'
     | '/users'
     | '/'
     | '/errors/401'
@@ -772,6 +788,7 @@ export interface FileRouteTypes {
     | '/(auth)/login'
     | '/(auth)/sign-up'
     | '/_authenticated/blank-page'
+    | '/_authenticated/notifications'
     | '/_authenticated/users'
     | '/_authenticated/'
     | '/_authenticated/errors/401'
@@ -841,6 +858,13 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof AuthenticatedUsersLazyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsLazyRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/blank-page': {
@@ -1135,6 +1159,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedBlankPageLazyRoute: typeof AuthenticatedBlankPageLazyRoute
+  AuthenticatedNotificationsLazyRoute: typeof AuthenticatedNotificationsLazyRoute
   AuthenticatedUsersLazyRoute: typeof AuthenticatedUsersLazyRoute
   AuthenticatedIndexLazyRoute: typeof AuthenticatedIndexLazyRoute
   AuthenticatedErrors401LazyRoute: typeof AuthenticatedErrors401LazyRoute
@@ -1178,6 +1203,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBlankPageLazyRoute: AuthenticatedBlankPageLazyRoute,
+  AuthenticatedNotificationsLazyRoute: AuthenticatedNotificationsLazyRoute,
   AuthenticatedUsersLazyRoute: AuthenticatedUsersLazyRoute,
   AuthenticatedIndexLazyRoute: AuthenticatedIndexLazyRoute,
   AuthenticatedErrors401LazyRoute: AuthenticatedErrors401LazyRoute,

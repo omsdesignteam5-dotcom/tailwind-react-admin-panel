@@ -3,9 +3,10 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Link } from '@tanstack/react-router'
 import { cn } from '@/lib/utils'
 
-const notifications = [
+export const mockNotifications = [
   {
     id: 1,
     title: 'New Student Enrollment',
@@ -29,7 +30,7 @@ const notifications = [
     title: 'Attendance Warning',
     description: 'Attendance below 75% for Benjamin Lee from the Sports Department.',
     time: '1 hour ago',
-    read: true,
+    read: false,
     icon: ClipboardList,
     color: 'text-amber-500 bg-amber-50 dark:bg-amber-950/50',
   },
@@ -42,10 +43,154 @@ const notifications = [
     icon: Clock,
     color: 'text-rose-500 bg-rose-50 dark:bg-rose-950/50',
   },
+  {
+    id: 5,
+    title: 'System Maintenance',
+    description: 'Server maintenance scheduled for tonight at 12:00 AM.',
+    time: '6 hours ago',
+    read: true,
+    icon: Bell,
+    color: 'text-purple-500 bg-purple-50 dark:bg-purple-950/50',
+  },
+  {
+    id: 6,
+    title: 'New Event Registration',
+    description: 'Parent-Teacher Meeting registrations have started.',
+    time: '1 day ago',
+    read: true,
+    icon: Users,
+    color: 'text-indigo-500 bg-indigo-50 dark:bg-indigo-950/50',
+  },
+  {
+    id: 7,
+    title: 'Fee Payment Received',
+    description: 'Payment of $450 received from Sarah Connor.',
+    time: '1 day ago',
+    read: true,
+    icon: ClipboardList,
+    color: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/50',
+  },
+  {
+    id: 8,
+    title: 'New Staff Profile',
+    description: 'HR added a new profile for Jane Doe (Science Teacher).',
+    time: '1 day ago',
+    read: true,
+    icon: Users,
+    color: 'text-blue-500 bg-blue-50 dark:bg-blue-950/50',
+  },
+  {
+    id: 9,
+    title: 'Assignment Deadline',
+    description: 'Science Project submissions are closing in 24 hours.',
+    time: '2 days ago',
+    read: true,
+    icon: Clock,
+    color: 'text-amber-500 bg-amber-50 dark:bg-amber-950/50',
+  },
+  {
+    id: 10,
+    title: 'Transport Alert',
+    description: 'Route 4 is delayed by 15 minutes due to heavy traffic.',
+    time: '2 days ago',
+    read: true,
+    icon: Bell,
+    color: 'text-rose-500 bg-rose-50 dark:bg-rose-950/50',
+  },
+  {
+    id: 11,
+    title: 'Holiday Announcement',
+    description: 'School will be closed next Monday for Memorial Day.',
+    time: '3 days ago',
+    read: true,
+    icon: Bell,
+    color: 'text-purple-500 bg-purple-50 dark:bg-purple-950/50',
+  },
+  {
+    id: 12,
+    title: 'Exam Schedule Updated',
+    description: 'The final exam timetable for Grade 12 has been published.',
+    time: '3 days ago',
+    read: true,
+    icon: GraduationCap,
+    color: 'text-indigo-500 bg-indigo-50 dark:bg-indigo-950/50',
+  },
+  {
+    id: 13,
+    title: 'Teacher Leave Request',
+    description: 'Mr. John (History) requested a leave of absence for Friday.',
+    time: '4 days ago',
+    read: true,
+    icon: Users,
+    color: 'text-amber-500 bg-amber-50 dark:bg-amber-950/50',
+  },
+  {
+    id: 14,
+    title: 'Classroom Booking',
+    description: 'Auditorium booked for Annual Day Rehearsal.',
+    time: '4 days ago',
+    read: true,
+    icon: ClipboardList,
+    color: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/50',
+  },
+  {
+    id: 15,
+    title: 'Cafeteria Menu Update',
+    description: 'New items added to the online lunch pre-ordering system.',
+    time: '5 days ago',
+    read: true,
+    icon: Bell,
+    color: 'text-blue-500 bg-blue-50 dark:bg-blue-950/50',
+  },
+  {
+    id: 16,
+    title: 'Quarterly Audit',
+    description: 'Financial audit report is ready for download.',
+    time: '1 week ago',
+    read: true,
+    icon: ClipboardList,
+    color: 'text-purple-500 bg-purple-50 dark:bg-purple-950/50',
+  },
+  {
+    id: 17,
+    title: 'Software Update',
+    description: 'Admin Portal v2.0 deployed successfully.',
+    time: '1 week ago',
+    read: true,
+    icon: Bell,
+    color: 'text-blue-500 bg-blue-50 dark:bg-blue-950/50',
+  },
+  {
+    id: 18,
+    title: 'Parent Complaint',
+    description: 'A new grievance ticket has been filed regarding transport.',
+    time: '1 week ago',
+    read: true,
+    icon: Users,
+    color: 'text-rose-500 bg-rose-50 dark:bg-rose-950/50',
+  },
+  {
+    id: 19,
+    title: 'Curriculum Change',
+    description: 'Math syllabus updated for the spring semester.',
+    time: '2 weeks ago',
+    read: true,
+    icon: GraduationCap,
+    color: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/50',
+  },
+  {
+    id: 20,
+    title: 'Welcome to the System',
+    description: 'Your administrative account has been fully set up.',
+    time: '2 weeks ago',
+    read: true,
+    icon: Bell,
+    color: 'text-indigo-500 bg-indigo-50 dark:bg-indigo-950/50',
+  },
 ]
 
 export function Notifications() {
-  const unreadCount = notifications.filter((n) => !n.read).length
+  const unreadCount = mockNotifications.filter((n) => !n.read).length
 
   return (
     <Popover>
@@ -76,13 +221,13 @@ export function Notifications() {
         
         <ScrollArea className='h-[350px]'>
           <div className='flex flex-col'>
-            {notifications.map((notification, index) => (
+            {mockNotifications.map((notification, index) => (
               <div
                 key={notification.id}
                 className={cn(
                   'relative flex gap-3 p-4 transition-colors hover:bg-muted/50 cursor-pointer',
                   !notification.read && 'bg-primary/5',
-                  index !== notifications.length - 1 && 'border-b border-border/50'
+                  index !== mockNotifications.length - 1 && 'border-b border-border/50'
                 )}
               >
                 {!notification.read && (
@@ -114,10 +259,12 @@ export function Notifications() {
           </div>
         </ScrollArea>
         
-        <div className='p-2 border-t bg-muted/30'>
-          <Button variant='ghost' className='w-full h-8 text-xs text-muted-foreground hover:text-foreground'>
-            View all notifications
-          </Button>
+        <div className='p-2 border-t bg-muted/30 flex justify-center'>
+          <Link to="/notifications" className='w-full'>
+            <Button variant='ghost' className='w-full h-8 text-xs text-muted-foreground hover:text-foreground'>
+              View all notifications
+            </Button>
+          </Link>
         </div>
       </PopoverContent>
     </Popover>

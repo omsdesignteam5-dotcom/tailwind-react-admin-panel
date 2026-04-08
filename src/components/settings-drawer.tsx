@@ -137,7 +137,7 @@ function SidebarThemeConfig() {
 
   const options = [
     { value: 'default' as const, label: 'Default', color: 'bg-stone-200 dark:bg-stone-800', activeBorder: 'border-primary' },
-    { value: 'matrix' as const, label: 'Matrix', color: 'bg-emerald-500', activeBorder: 'border-emerald-500' },
+    { value: 'green' as const, label: 'Green', color: 'bg-emerald-500', activeBorder: 'border-emerald-500' },
     { value: 'cyan' as const, label: 'Cyan', color: 'bg-cyan-500', activeBorder: 'border-cyan-500' },
     { value: 'violet' as const, label: 'Violet', color: 'bg-violet-500', activeBorder: 'border-violet-500' },
     { value: 'amber' as const, label: 'Amber', color: 'bg-amber-500', activeBorder: 'border-amber-500' },

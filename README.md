@@ -2,7 +2,7 @@
 
 Admin Dashboard များအတွက် လှပခေတ်မီပြီး အသုံးပြုရလွယ်ကူသော အခြေခံ Template တစ်ခု ဖြစ်ပါသည်။
 
-<img width="959" height="475" alt="admin-dashboard" src="https://github.com/user-attachments/assets/8f465e39-c47e-4dc1-99ed-1f376bdb2dbf" />
+<img width="959" height="475" alt="Screenshot 2026-04-08 160657" src="https://github.com/user-attachments/assets/1fd68eb3-f78f-4b2f-a1a5-20abdf4bdd62" />
 
 ---
 

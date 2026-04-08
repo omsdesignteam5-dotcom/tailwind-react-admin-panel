@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.tanstack/
+src/routeTree.gen.ts
+*.gen.ts
+scripts/

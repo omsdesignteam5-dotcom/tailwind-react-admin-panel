@@ -100,12 +100,12 @@ const FormLabel = forwardRef<
   HTMLLabelElement,
   ComponentProps<typeof Label>
 >(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField()
+  const { formItemId } = useFormField()
 
   return (
     <Label
       ref={ref}
-      className={cn(error && 'text-destructive', className)}
+      className={cn(className)}
       htmlFor={formItemId}
       {...props}
     />

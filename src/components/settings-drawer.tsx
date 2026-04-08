@@ -169,7 +169,7 @@ function SidebarThemeConfig() {
                 )}
               >
                 {isActive && (
-                  <div className={cn('rounded-full w-1.5 h-1.5 ring-1 ring-offset-1 ring-offset-background', opt.activeBorder, opt.color)} />
+                  <div className={cn('rounded-full w-1.5 h-1.5', opt.activeBorder, opt.color)} />
                 )}
               </div>
               {opt.label}

@@ -1,13 +1,21 @@
 import { useCallback, useSyncExternalStore } from 'react'
 
 /* ── types ───────────────────────────────── */
-export type ToastVariant = 'default' | 'success' | 'destructive'
+export type ToastVariant = 'default' | 'success' | 'destructive' | 'warning' | 'info' | 'neutral'
+export type ToastPosition =
+  | 'top-left'
+  | 'top-right'
+  | 'top-center'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'bottom-center'
 
 export interface ToastData {
   id: string
   title?: string
   description?: string
   variant?: ToastVariant
+  position?: ToastPosition
   action?: React.ReactNode
   duration?: number
 }

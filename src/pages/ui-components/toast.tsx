@@ -5,6 +5,12 @@ import ToastVariants from './_components/toast/toast-variants'
 import ToastVariantsCode from './_components/toast/toast-variants?raw'
 import ToastWithAction from './_components/toast/toast-with-action'
 import ToastWithActionCode from './_components/toast/toast-with-action?raw'
+import ToastLongContent from './_components/toast/toast-long-content'
+import ToastLongContentCode from './_components/toast/toast-long-content?raw'
+import ToastCustomDuration from './_components/toast/toast-custom-duration'
+import ToastCustomDurationCode from './_components/toast/toast-custom-duration?raw'
+import ToastPositions from './_components/toast/toast-positions'
+import ToastPositionsCode from './_components/toast/toast-positions?raw'
 
 export function ToastPage() {
   return (
@@ -47,7 +53,7 @@ import { Toaster } from '@/components/ui/toaster'`}
 
         <ComponentPreview
           title='Variants'
-          description='Toast notifications with different visual styles: default, success, and destructive.'
+          description='Toast notifications with different visual styles: success, destructive, warning, info, and neutral.'
           code={ToastVariantsCode}
         >
           <ToastVariants />
@@ -59,6 +65,30 @@ import { Toaster } from '@/components/ui/toaster'`}
           code={ToastWithActionCode}
         >
           <ToastWithAction />
+        </ComponentPreview>
+
+        <ComponentPreview
+          title='Long Content'
+          description='Demonstrates how the toast handles multi-line content.'
+          code={ToastLongContentCode}
+        >
+          <ToastLongContent />
+        </ComponentPreview>
+
+        <ComponentPreview
+          title='Custom Duration'
+          description='Control how long the toast remains visible (in milliseconds).'
+          code={ToastCustomDurationCode}
+        >
+          <ToastCustomDuration />
+        </ComponentPreview>
+
+        <ComponentPreview
+          title='Positions'
+          description='Display toast notifications in different corners of the screen.'
+          code={ToastPositionsCode}
+        >
+          <ToastPositions />
         </ComponentPreview>
       </div>
     </div>

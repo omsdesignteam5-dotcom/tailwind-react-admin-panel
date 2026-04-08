@@ -41,6 +41,42 @@ export default function ToastVariants() {
       >
         Destructive
       </Button>
+      <Button
+        variant='outline'
+        onClick={() =>
+          toast({
+            variant: 'warning',
+            title: 'Warning!',
+            description: 'Your account subscription will expire soon.',
+          })
+        }
+      >
+        Warning
+      </Button>
+      <Button
+        variant='outline'
+        onClick={() =>
+          toast({
+            variant: 'info',
+            title: 'New Update',
+            description: 'A new version of the app is available.',
+          })
+        }
+      >
+        Info
+      </Button>
+      <Button
+        variant='outline'
+        onClick={() =>
+          toast({
+            variant: 'neutral',
+            title: 'Neutral Toast',
+            description: 'This is a neutral style toast message.',
+          })
+        }
+      >
+        Neutral
+      </Button>
     </div>
   )
 }

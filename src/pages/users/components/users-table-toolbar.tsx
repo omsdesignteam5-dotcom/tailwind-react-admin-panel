@@ -28,7 +28,7 @@ export function UsersTableToolbar<TData>({
     <div className='flex flex-wrap items-center justify-between gap-2'>
       <div className='flex flex-1 flex-wrap items-center gap-2'>
         {searchColumn && (
-          <div className='relative'>
+          <div className='relative w-full sm:w-auto'>
             <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
             <Input
               placeholder={searchPlaceholder}
@@ -36,42 +36,44 @@ export function UsersTableToolbar<TData>({
               onChange={(event) =>
                 table.getColumn(searchColumn)?.setFilterValue(event.target.value)
               }
-              className='h-9 w-[150px] pl-8 lg:w-[250px]'
+              className='h-9 w-full pl-8 sm:w-[150px] md:w-[220px] lg:w-[240px]'
             />
           </div>
         )}
         
-        {/* Role Filter */}
-        <CustomSelect
-          value={selectedRole}
-          onValueChange={(value) =>
-            table.getColumn('role')?.setFilterValue(value === 'all' ? undefined : value)
-          }
-          className='w-[130px]'
-          options={[
-            { label: 'All Roles', value: 'all' },
-            { label: 'Super Admin', value: 'superadmin' },
-            { label: 'Admin', value: 'admin' },
-            { label: 'Teacher', value: 'Teacher' },
-            { label: 'Parent', value: 'Parent' },
-            { label: 'Student', value: 'Student' }
-          ]}
-        />
+        <div className="grid grid-cols-2 gap-2 w-full sm:w-auto sm:flex sm:items-center">
+          {/* Role Filter */}
+          <CustomSelect
+            value={selectedRole}
+            onValueChange={(value) =>
+              table.getColumn('role')?.setFilterValue(value === 'all' ? undefined : value)
+            }
+            className='w-full sm:w-[130px]'
+            options={[
+              { label: 'All Roles', value: 'all' },
+              { label: 'Super Admin', value: 'superadmin' },
+              { label: 'Admin', value: 'admin' },
+              { label: 'Teacher', value: 'Teacher' },
+              { label: 'Parent', value: 'Parent' },
+              { label: 'Student', value: 'Student' }
+            ]}
+          />
 
-        {/* Status Filter */}
-        <CustomSelect
-          value={selectedStatus}
-          onValueChange={(value) =>
-            table.getColumn('status')?.setFilterValue(value === 'all' ? undefined : value)
-          }
-          className='w-[130px]'
-          options={[
-            { label: 'All Status', value: 'all' },
-            { label: 'Active', value: 'active' },
-            { label: 'Inactive', value: 'inactive' },
-            { label: 'Suspended', value: 'suspended' }
-          ]}
-        />
+          {/* Status Filter */}
+          <CustomSelect
+            value={selectedStatus}
+            onValueChange={(value) =>
+              table.getColumn('status')?.setFilterValue(value === 'all' ? undefined : value)
+            }
+            className='w-full sm:w-[130px]'
+            options={[
+              { label: 'All Status', value: 'all' },
+              { label: 'Active', value: 'active' },
+              { label: 'Inactive', value: 'inactive' },
+              { label: 'Suspended', value: 'suspended' }
+            ]}
+          />
+        </div>
 
         {isFiltered && (
           <Button
@@ -85,12 +87,12 @@ export function UsersTableToolbar<TData>({
         )}
       </div>
 
-      <div className='flex items-center space-x-2'>
-        <Button variant='outline' size='sm' className='h-9 hidden md:flex'>
+      <div className='flex items-end space-x-2'>
+        <Button variant='outline' className='h-9 hidden md:flex'>
           <Upload className='mr-2 h-4 w-4' />
           Import CSV
         </Button>
-        <Button variant='outline' size='sm' className='h-9 hidden md:flex'>
+        <Button variant='outline' className='h-9 hidden md:flex'>
           <Download className='mr-2 h-4 w-4' />
           Export CSV
         </Button>

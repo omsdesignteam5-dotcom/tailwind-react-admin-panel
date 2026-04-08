@@ -219,6 +219,19 @@
 .toast-item[data-state='open'] {
   animation: toastSlideIn 300ms ease-out forwards;
 }
+
+/* Position-based entry override */
+.toast-item[data-position^='top-left'][data-state='open'],
+.toast-item[data-position^='bottom-left'][data-state='open'] {
+  animation-name: toastSlideInLeft;
+}
+.toast-item[data-position='top-center'][data-state='open'] {
+  animation-name: toastSlideInTop;
+}
+.toast-item[data-position='bottom-center'][data-state='open'] {
+  animation-name: toastSlideInBottom;
+}
+
 .toast-item[data-state='closed'] {
   animation: toastSlideOut 200ms ease-in forwards;
 }
@@ -237,6 +250,19 @@
   from { transform: translateX(calc(100% + 1rem)); opacity: 0; }
   to   { transform: translateX(0); opacity: 1; }
 }
+@keyframes toastSlideInLeft {
+  from { transform: translateX(calc(-100% - 1rem)); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes toastSlideInTop {
+  from { transform: translateY(calc(-100% - 1rem)); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes toastSlideInBottom {
+  from { transform: translateY(calc(100% + 1rem)); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
 @keyframes toastSlideOut {
   from { transform: translateX(0); opacity: 1; }
   to   { transform: translateX(calc(100% + 1rem)); opacity: 0; }

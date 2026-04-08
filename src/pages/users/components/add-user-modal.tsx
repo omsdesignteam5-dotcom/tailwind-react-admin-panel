@@ -108,143 +108,148 @@ export function AddUserModal({ open, onOpenChange, onSubmit, editingUser }: AddU
 
   return (
     <Modal open={open} onOpenChange={handleOpenChange}>
-      <ModalContent className='max-w-2xl sm:max-w-2xl'>
-        <ModalHeader>
-          <ModalTitle>{isEditing ? 'Edit User' : 'Add New User'}</ModalTitle>
-          <ModalDescription>
-            {isEditing 
-              ? 'Update the details for this user below.' 
-              : 'Fill in the details below to create a new user account.'}
-          </ModalDescription>
-        </ModalHeader>
+      <ModalContent className='max-w-2xl w-full h-dvh max-h-dvh p-0 rounded-none border-0 overflow-hidden flex flex-col sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[calc(100dvh-2rem)] sm:rounded-lg sm:border'>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-4 py-4'>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-              <FormField
-                control={form.control}
-                name='firstName'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder='John' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='lastName'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder='Doe' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='username'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder='johndoe' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='email'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder='john.doe@example.com' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='phone'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone</FormLabel>
-                    <FormControl>
-                      <Input placeholder='+1-202-555-0101' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='role'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Role</FormLabel>
-                    <FormControl>
-                      <CustomSelect
-                        value={field.value}
-                        onValueChange={field.onChange}
-                        placeholder='Select a role'
-                        options={[
-                          { label: 'Super Admin', value: 'superadmin' },
-                          { label: 'Admin', value: 'admin' },
-                          { label: 'Teacher', value: 'Teacher' },
-                          { label: 'Parent', value: 'Parent' },
-                          { label: 'Student', value: 'Student' }
-                        ]}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='password'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <PasswordInput placeholder='Enter password' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='confirmPassword'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
-                    <FormControl>
-                      <PasswordInput placeholder='Confirm password' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col h-full overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-4 pt-10 sm:p-6 sm:pt-6">
+              <ModalHeader className="mb-6 px-0 pb-0">
+                <ModalTitle>{isEditing ? 'Edit User' : 'Add New User'}</ModalTitle>
+                <ModalDescription>
+                  {isEditing 
+                    ? 'Update the details for this user below.' 
+                    : 'Fill in the details below to create a new user account.'}
+                </ModalDescription>
+              </ModalHeader>
+
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <FormField
+                  control={form.control}
+                  name='firstName'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>First Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder='John' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='lastName'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Last Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder='Doe' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='username'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input placeholder='johndoe' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='email'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder='john.doe@example.com' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='phone'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone</FormLabel>
+                      <FormControl>
+                        <Input placeholder='+1-202-555-0101' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='role'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Role</FormLabel>
+                      <FormControl>
+                        <CustomSelect
+                          value={field.value}
+                          onValueChange={field.onChange}
+                          placeholder='Select a role'
+                          options={[
+                            { label: 'Super Admin', value: 'superadmin' },
+                            { label: 'Admin', value: 'admin' },
+                            { label: 'Teacher', value: 'Teacher' },
+                            { label: 'Parent', value: 'Parent' },
+                            { label: 'Student', value: 'Student' }
+                          ]}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='password'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <PasswordInput placeholder='Enter password' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='confirmPassword'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormControl>
+                        <PasswordInput placeholder='Confirm password' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
-            <ModalFooter className='mt-6'>
+            
+            <ModalFooter className='p-4 sm:p-6 border-t mt-auto grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-0'>
               <Button
                 type='button'
                 variant='outline'
                 onClick={() => handleOpenChange(false)}
+                className="w-full sm:w-auto"
               >
                 Cancel
               </Button>
-              <Button type='submit'>{isEditing ? 'Update User' : 'Save User'}</Button>
+              <Button type='submit' className="w-full sm:w-auto">{isEditing ? 'Update User' : 'Save User'}</Button>
             </ModalFooter>
           </form>
         </Form>

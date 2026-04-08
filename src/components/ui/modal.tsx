@@ -43,8 +43,9 @@ const ModalContent = forwardRef<
       ref={ref}
       aria-describedby={undefined}
       className={cn(
-        'dialog-content fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2',
-        'gap-4 border border-border bg-background p-6 shadow-lg sm:rounded-lg',
+        'dialog-content fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2',
+        'gap-4 border border-border bg-background p-6 shadow-lg rounded-lg',
+        'max-h-[calc(100dvh-2rem)] overflow-y-auto',
         className
       )}
       {...props}

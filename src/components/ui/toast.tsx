@@ -2,20 +2,35 @@ import { forwardRef, type ComponentProps, type ComponentRef } from 'react'
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { ToastVariant } from './use-toast'
+import type { ToastVariant, ToastPosition } from './use-toast'
 
 /* ── provider ───────────────────────────── */
 const ToastProvider = ToastPrimitive.Provider
 
 /* ── viewport ───────────────────────────── */
+const positionClasses: Record<ToastPosition, string> = {
+  'top-left': 'top-0 left-0',
+  'top-right': 'top-0 right-0',
+  'top-center': 'top-0 left-[50%] -translate-x-[50%]',
+  'bottom-left': 'bottom-0 left-0',
+  'bottom-right': 'bottom-0 right-0',
+  'bottom-center': 'bottom-0 left-[50%] -translate-x-[50%]',
+}
+
+interface ToastViewportProps extends ComponentProps<typeof ToastPrimitive.Viewport> {
+  position?: ToastPosition
+}
+
 const ToastViewport = forwardRef<
   ComponentRef<typeof ToastPrimitive.Viewport>,
-  ComponentProps<typeof ToastPrimitive.Viewport>
->(({ className, ...props }, ref) => (
+  ToastViewportProps
+>(({ className, position = 'top-right', ...props }, ref) => (
   <ToastPrimitive.Viewport
     ref={ref}
     className={cn(
-      'fixed top-0 right-0 z-100 flex max-h-screen w-full flex-col-reverse gap-2 p-4 sm:bottom-0 sm:top-auto sm:flex-col sm:max-w-105',
+      'fixed z-100 flex max-h-screen w-full p-4 sm:max-w-105',
+      position.startsWith('top') ? 'flex-col' : 'flex-col-reverse',
+      positionClasses[position],
       className
     )}
     {...props}
@@ -30,19 +45,27 @@ const variantClasses: Record<ToastVariant, string> = {
     'border-green-500/30 bg-green-50 text-green-900 dark:bg-green-950/50 dark:text-green-100 dark:border-green-500/20',
   destructive:
     'border-destructive/30 bg-red-50 text-red-900 dark:bg-red-950/50 dark:text-red-100 dark:border-destructive/20',
+  warning:
+    'border-amber-500/30 bg-amber-50 text-amber-900 dark:bg-amber-950/50 dark:text-amber-100 dark:border-amber-500/20',
+  info:
+    'border-blue-500/30 bg-blue-50 text-blue-900 dark:bg-blue-950/50 dark:text-blue-100 dark:border-blue-500/20',
+  neutral:
+    'border-muted/30 bg-muted-50  text-muted-foreground dark:bg-muted/20 dark:text-muted-foreground dark:border-muted/10',
 }
 
 /* ── toast root ─────────────────────────── */
 interface ToastProps extends ComponentProps<typeof ToastPrimitive.Root> {
   variant?: ToastVariant
+  position?: ToastPosition
 }
 
 const Toast = forwardRef<
   ComponentRef<typeof ToastPrimitive.Root>,
   ToastProps
->(({ className, variant = 'default', ...props }, ref) => (
+>(({ className, variant = 'default', position, ...props }, ref) => (
   <ToastPrimitive.Root
     ref={ref}
+    data-position={position}
     className={cn(
       'toast-item group pointer-events-auto relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-md border p-4 shadow-lg transition-all',
       variantClasses[variant],

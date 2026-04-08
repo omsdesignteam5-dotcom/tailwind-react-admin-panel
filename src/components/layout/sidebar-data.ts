@@ -9,8 +9,9 @@ import {
   UserCog,
   Palette,
   FileText,
-  Bell,
+  // Bell,
   Component,
+  Users,
 } from 'lucide-react'
 import type { SidebarData } from './types'
 
@@ -35,12 +36,16 @@ export const sidebarData: SidebarData = {
     {
       title: 'General Pages',
       items: [
-      // {
       //     title: 'Notifications',
       //     url: '/notifications',
       //     badge: '5',
       //     icon: Bell,
       //   },
+        {
+          title: 'User Management',
+          url: '/users',
+          icon: Users,
+        },
         {
           title: 'Auth',
           icon: ShieldCheck,

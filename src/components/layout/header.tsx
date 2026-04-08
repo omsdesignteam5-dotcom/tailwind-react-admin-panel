@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from '@tanstack/react-router'
-import { Menu, PanelLeftOpen, PanelLeftClose } from 'lucide-react'
+import { Menu, PanelLeftOpen, PanelLeftClose, Maximize, Minimize } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/context/sidebar-provider'
 import { sidebarData } from './sidebar-data'
@@ -34,6 +34,28 @@ export function Header({ title }: HeaderProps) {
     document.addEventListener('scroll', onScroll, { passive: true })
     return () => document.removeEventListener('scroll', onScroll)
   }, [])
+
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement)
+    }
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
+  }, [])
+
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`)
+      })
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+      }
+    }
+  }
 
   const isExpanded = layout === 'expanded' || (layout === 'full' && isOpen)
 
@@ -114,6 +136,28 @@ export function Header({ title }: HeaderProps) {
         <Notifications />
         <ThemeSwitch />
         <SettingsDrawer />
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='text-muted-foreground'
+              onClick={toggleFullScreen}
+            >
+              {isFullscreen ? (
+                <Minimize className='h-5 w-5' />
+              ) : (
+                <Maximize className='h-5 w-5' />
+              )}
+              <span className='sr-only'>Toggle fullscreen</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side='bottom'>
+            {isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+          </TooltipContent>
+        </Tooltip>
+
         <ProfileDropdown />
       </div>
     </header>

@@ -82,38 +82,25 @@ const AlertDialogDescription = forwardRef<
 ))
 AlertDialogDescription.displayName = 'AlertDialogDescription'
 
+import { Button, type ButtonProps } from '@/components/ui/button'
+
 const AlertDialogAction = forwardRef<
   ComponentRef<typeof AlertDialogPrimitive.Action>,
-  ComponentProps<typeof AlertDialogPrimitive.Action>
+  ComponentProps<typeof AlertDialogPrimitive.Action> & Pick<ButtonProps, 'variant' | 'size'>
 >(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Action
-    ref={ref}
-    className={cn(
-      'inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-xs',
-      'hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-      'disabled:pointer-events-none disabled:opacity-50',
-      className
-    )}
-    {...props}
-  />
+  <AlertDialogPrimitive.Action ref={ref} asChild>
+    <Button className={className} {...(props as any)} />
+  </AlertDialogPrimitive.Action>
 ))
 AlertDialogAction.displayName = 'AlertDialogAction'
 
 const AlertDialogCancel = forwardRef<
   ComponentRef<typeof AlertDialogPrimitive.Cancel>,
-  ComponentProps<typeof AlertDialogPrimitive.Cancel>
+  ComponentProps<typeof AlertDialogPrimitive.Cancel> & Pick<ButtonProps, 'variant' | 'size'>
 >(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Cancel
-    ref={ref}
-    className={cn(
-      'inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-xs',
-      'hover:bg-accent hover:text-accent-foreground',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-      'disabled:pointer-events-none disabled:opacity-50',
-      className
-    )}
-    {...props}
-  />
+  <AlertDialogPrimitive.Cancel ref={ref} asChild>
+    <Button variant='outline' className={className} {...(props as any)} />
+  </AlertDialogPrimitive.Cancel>
 ))
 AlertDialogCancel.displayName = 'AlertDialogCancel'
 

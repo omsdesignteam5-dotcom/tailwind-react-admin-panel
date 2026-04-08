@@ -29,7 +29,7 @@ export function SettingsDrawer() {
         <Button
           size='icon'
           variant='ghost'
-          className='rounded-full'
+          className='rounded-full text-muted-foreground hover:text-foreground'
           aria-label='Open settings'
         >
           <Settings className='h-[1.2rem] w-[1.2rem]' />
@@ -44,6 +44,7 @@ export function SettingsDrawer() {
         </SheetHeader>
         <div className='flex-1 space-y-6 overflow-y-auto px-1 py-4'>
           <ThemeConfig />
+          <PrimaryColorConfig />
           <LayoutConfig />
           <SidebarThemeConfig />
         </div>
@@ -172,6 +173,54 @@ function SidebarThemeConfig() {
                 )}
               </div>
               {opt.label}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function PrimaryColorConfig() {
+  const { primaryColor, setPrimaryColor } = useTheme()
+
+  const options = [
+    { value: 'default' as const, label: 'Default', color: 'bg-primary' },
+    { value: 'purple' as const, label: 'Purple', color: 'bg-purple-600' },
+    { value: 'blue' as const, label: 'Blue', color: 'bg-blue-600' },
+    { value: 'green' as const, label: 'Green', color: 'bg-emerald-500' },
+    { value: 'orange' as const, label: 'Orange', color: 'bg-orange-500' },
+  ]
+
+  return (
+    <div>
+      <SectionTitle title='Primary Color' />
+      <div className='grid grid-cols-5 gap-2'>
+        {options.map((opt) => {
+          const isActive = primaryColor === opt.value
+          return (
+            <button
+              key={opt.value}
+              onClick={() => setPrimaryColor(opt.value)}
+              className={cn(
+                'flex flex-col items-center gap-1 rounded-lg border p-2 text-[10px] transition-colors',
+                isActive
+                  ? 'border-primary bg-accent/20'
+                  : 'border-border text-muted-foreground hover:bg-accent/50'
+              )}
+            >
+              <div 
+                className={cn(
+                  "flex items-center justify-center rounded-full w-4 h-4 ring-offset-1 ring-offset-background",
+                  isActive ? "ring-1 ring-primary" : "",
+                  opt.value === 'default' ? "bg-slate-900 dark:bg-slate-100" : opt.color
+                )} 
+              >
+                {isActive && (
+                  <div className={cn("rounded-full w-1.5 h-1.5", opt.value === 'default' ? "bg-slate-900 dark:bg-slate-100" : opt.color)} />
+                )}
+              </div>
+              <span className="truncate w-full text-center">{opt.label}</span>
             </button>
           )
         })}

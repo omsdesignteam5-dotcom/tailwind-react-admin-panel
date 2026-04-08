@@ -29,6 +29,7 @@ export function AppearancePage() {
 
       <div className='flex flex-col gap-8 rounded-xl border border-border bg-card p-6 shadow-sm'>
         <ThemeConfig />
+        <PrimaryColorConfig />
         <SidebarThemeConfig />
         <LayoutConfig />
         
@@ -166,6 +167,57 @@ function SidebarThemeConfig() {
               >
                 {isActive && (
                   <div className={cn("rounded-full w-2 h-2 ring-1 ring-offset-1 ring-offset-background", opt.activeBorder, opt.color)} />
+                )}
+              </div>
+              {opt.label}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function PrimaryColorConfig() {
+  const { primaryColor, setPrimaryColor } = useTheme()
+
+  const options = [
+    { value: 'default' as const, label: 'Default', color: 'bg-primary' },
+    { value: 'purple' as const, label: 'Purple', color: 'bg-purple-600' },
+    { value: 'blue' as const, label: 'Blue', color: 'bg-blue-600' },
+    { value: 'green' as const, label: 'Green', color: 'bg-emerald-500' },
+    { value: 'orange' as const, label: 'Orange', color: 'bg-orange-500' },
+  ]
+
+  return (
+    <div>
+      <SectionTitle 
+        title='Primary Color' 
+        description='Choose the main color used for buttons, links, and accents.'
+      />
+      <div className='grid grid-cols-2 md:grid-cols-5 gap-3 max-w-xl'>
+        {options.map((opt) => {
+          const isActive = primaryColor === opt.value
+          return (
+            <button
+              key={opt.value}
+              onClick={() => setPrimaryColor(opt.value)}
+              className={cn(
+                'flex flex-col items-center gap-2 rounded-lg border-2 p-3 text-sm font-medium transition-all hover:bg-accent/50',
+                isActive
+                  ? 'border-primary bg-accent/20 shadow-sm'
+                  : 'border-border text-muted-foreground bg-background'
+              )}
+            >
+              <div 
+                className={cn(
+                  "flex items-center justify-center rounded-full w-5 h-5 ring-offset-2 ring-offset-background",
+                  isActive ? "ring-2 ring-primary" : "",
+                  opt.value === 'default' ? "bg-slate-900 dark:bg-slate-100" : opt.color
+                )} 
+              >
+                {isActive && (
+                  <div className={cn("rounded-full w-2 h-2 ring-1 ring-offset-1 ring-offset-background ring-primary", opt.value === 'default' ? "bg-slate-900 dark:bg-slate-100" : opt.color)} />
                 )}
               </div>
               {opt.label}

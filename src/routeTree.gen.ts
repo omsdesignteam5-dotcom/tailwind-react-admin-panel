@@ -17,6 +17,9 @@ import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password'
 
 const AuthenticatedIndexLazyRouteImport = createFileRoute('/_authenticated/')()
+const AuthenticatedUsersLazyRouteImport = createFileRoute(
+  '/_authenticated/users',
+)()
 const AuthenticatedBlankPageLazyRouteImport = createFileRoute(
   '/_authenticated/blank-page',
 )()
@@ -110,6 +113,9 @@ const AuthenticatedUiComponentsAlertDialogLazyRouteImport = createFileRoute(
 const AuthenticatedUiComponentsAccordionLazyRouteImport = createFileRoute(
   '/_authenticated/ui-components/accordion',
 )()
+const AuthenticatedSettingsProfileLazyRouteImport = createFileRoute(
+  '/_authenticated/settings/profile',
+)()
 const AuthenticatedSettingsAppearanceLazyRouteImport = createFileRoute(
   '/_authenticated/settings/appearance',
 )()
@@ -139,6 +145,13 @@ const AuthenticatedIndexLazyRoute = AuthenticatedIndexLazyRouteImport.update({
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any).lazy(() =>
   import('./routes/_authenticated/index.lazy').then((d) => d.Route),
+)
+const AuthenticatedUsersLazyRoute = AuthenticatedUsersLazyRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_authenticated/users.lazy').then((d) => d.Route),
 )
 const AuthenticatedBlankPageLazyRoute =
   AuthenticatedBlankPageLazyRouteImport.update({
@@ -463,6 +476,16 @@ const AuthenticatedUiComponentsAccordionLazyRoute =
       (d) => d.Route,
     ),
   )
+const AuthenticatedSettingsProfileLazyRoute =
+  AuthenticatedSettingsProfileLazyRouteImport.update({
+    id: '/settings/profile',
+    path: '/settings/profile',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/settings/profile.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 const AuthenticatedSettingsAppearanceLazyRoute =
   AuthenticatedSettingsAppearanceLazyRouteImport.update({
     id: '/settings/appearance',
@@ -520,12 +543,14 @@ export interface FileRoutesByFullPath {
   '/login': typeof authLoginRoute
   '/sign-up': typeof authSignUpRoute
   '/blank-page': typeof AuthenticatedBlankPageLazyRoute
+  '/users': typeof AuthenticatedUsersLazyRoute
   '/errors/401': typeof AuthenticatedErrors401LazyRoute
   '/errors/403': typeof AuthenticatedErrors403LazyRoute
   '/errors/404': typeof AuthenticatedErrors404LazyRoute
   '/errors/500': typeof AuthenticatedErrors500LazyRoute
   '/errors/503': typeof AuthenticatedErrors503LazyRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceLazyRoute
+  '/settings/profile': typeof AuthenticatedSettingsProfileLazyRoute
   '/ui-components/accordion': typeof AuthenticatedUiComponentsAccordionLazyRoute
   '/ui-components/alert-dialog': typeof AuthenticatedUiComponentsAlertDialogLazyRoute
   '/ui-components/avatar': typeof AuthenticatedUiComponentsAvatarLazyRoute
@@ -562,6 +587,7 @@ export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/sign-up': typeof authSignUpRoute
   '/blank-page': typeof AuthenticatedBlankPageLazyRoute
+  '/users': typeof AuthenticatedUsersLazyRoute
   '/': typeof AuthenticatedIndexLazyRoute
   '/errors/401': typeof AuthenticatedErrors401LazyRoute
   '/errors/403': typeof AuthenticatedErrors403LazyRoute
@@ -569,6 +595,7 @@ export interface FileRoutesByTo {
   '/errors/500': typeof AuthenticatedErrors500LazyRoute
   '/errors/503': typeof AuthenticatedErrors503LazyRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceLazyRoute
+  '/settings/profile': typeof AuthenticatedSettingsProfileLazyRoute
   '/ui-components/accordion': typeof AuthenticatedUiComponentsAccordionLazyRoute
   '/ui-components/alert-dialog': typeof AuthenticatedUiComponentsAlertDialogLazyRoute
   '/ui-components/avatar': typeof AuthenticatedUiComponentsAvatarLazyRoute
@@ -607,6 +634,7 @@ export interface FileRoutesById {
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/sign-up': typeof authSignUpRoute
   '/_authenticated/blank-page': typeof AuthenticatedBlankPageLazyRoute
+  '/_authenticated/users': typeof AuthenticatedUsersLazyRoute
   '/_authenticated/': typeof AuthenticatedIndexLazyRoute
   '/_authenticated/errors/401': typeof AuthenticatedErrors401LazyRoute
   '/_authenticated/errors/403': typeof AuthenticatedErrors403LazyRoute
@@ -614,6 +642,7 @@ export interface FileRoutesById {
   '/_authenticated/errors/500': typeof AuthenticatedErrors500LazyRoute
   '/_authenticated/errors/503': typeof AuthenticatedErrors503LazyRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceLazyRoute
+  '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileLazyRoute
   '/_authenticated/ui-components/accordion': typeof AuthenticatedUiComponentsAccordionLazyRoute
   '/_authenticated/ui-components/alert-dialog': typeof AuthenticatedUiComponentsAlertDialogLazyRoute
   '/_authenticated/ui-components/avatar': typeof AuthenticatedUiComponentsAvatarLazyRoute
@@ -653,12 +682,14 @@ export interface FileRouteTypes {
     | '/login'
     | '/sign-up'
     | '/blank-page'
+    | '/users'
     | '/errors/401'
     | '/errors/403'
     | '/errors/404'
     | '/errors/500'
     | '/errors/503'
     | '/settings/appearance'
+    | '/settings/profile'
     | '/ui-components/accordion'
     | '/ui-components/alert-dialog'
     | '/ui-components/avatar'
@@ -695,6 +726,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/sign-up'
     | '/blank-page'
+    | '/users'
     | '/'
     | '/errors/401'
     | '/errors/403'
@@ -702,6 +734,7 @@ export interface FileRouteTypes {
     | '/errors/500'
     | '/errors/503'
     | '/settings/appearance'
+    | '/settings/profile'
     | '/ui-components/accordion'
     | '/ui-components/alert-dialog'
     | '/ui-components/avatar'
@@ -739,6 +772,7 @@ export interface FileRouteTypes {
     | '/(auth)/login'
     | '/(auth)/sign-up'
     | '/_authenticated/blank-page'
+    | '/_authenticated/users'
     | '/_authenticated/'
     | '/_authenticated/errors/401'
     | '/_authenticated/errors/403'
@@ -746,6 +780,7 @@ export interface FileRouteTypes {
     | '/_authenticated/errors/500'
     | '/_authenticated/errors/503'
     | '/_authenticated/settings/appearance'
+    | '/_authenticated/settings/profile'
     | '/_authenticated/ui-components/accordion'
     | '/_authenticated/ui-components/alert-dialog'
     | '/_authenticated/ui-components/avatar'
@@ -799,6 +834,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexLazyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/users': {
+      id: '/_authenticated/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof AuthenticatedUsersLazyRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/blank-page': {
@@ -1039,6 +1081,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUiComponentsAccordionLazyRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings/profile': {
+      id: '/_authenticated/settings/profile'
+      path: '/settings/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof AuthenticatedSettingsProfileLazyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings/appearance': {
       id: '/_authenticated/settings/appearance'
       path: '/settings/appearance'
@@ -1086,6 +1135,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedBlankPageLazyRoute: typeof AuthenticatedBlankPageLazyRoute
+  AuthenticatedUsersLazyRoute: typeof AuthenticatedUsersLazyRoute
   AuthenticatedIndexLazyRoute: typeof AuthenticatedIndexLazyRoute
   AuthenticatedErrors401LazyRoute: typeof AuthenticatedErrors401LazyRoute
   AuthenticatedErrors403LazyRoute: typeof AuthenticatedErrors403LazyRoute
@@ -1093,6 +1143,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedErrors500LazyRoute: typeof AuthenticatedErrors500LazyRoute
   AuthenticatedErrors503LazyRoute: typeof AuthenticatedErrors503LazyRoute
   AuthenticatedSettingsAppearanceLazyRoute: typeof AuthenticatedSettingsAppearanceLazyRoute
+  AuthenticatedSettingsProfileLazyRoute: typeof AuthenticatedSettingsProfileLazyRoute
   AuthenticatedUiComponentsAccordionLazyRoute: typeof AuthenticatedUiComponentsAccordionLazyRoute
   AuthenticatedUiComponentsAlertDialogLazyRoute: typeof AuthenticatedUiComponentsAlertDialogLazyRoute
   AuthenticatedUiComponentsAvatarLazyRoute: typeof AuthenticatedUiComponentsAvatarLazyRoute
@@ -1127,6 +1178,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBlankPageLazyRoute: AuthenticatedBlankPageLazyRoute,
+  AuthenticatedUsersLazyRoute: AuthenticatedUsersLazyRoute,
   AuthenticatedIndexLazyRoute: AuthenticatedIndexLazyRoute,
   AuthenticatedErrors401LazyRoute: AuthenticatedErrors401LazyRoute,
   AuthenticatedErrors403LazyRoute: AuthenticatedErrors403LazyRoute,
@@ -1135,6 +1187,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedErrors503LazyRoute: AuthenticatedErrors503LazyRoute,
   AuthenticatedSettingsAppearanceLazyRoute:
     AuthenticatedSettingsAppearanceLazyRoute,
+  AuthenticatedSettingsProfileLazyRoute: AuthenticatedSettingsProfileLazyRoute,
   AuthenticatedUiComponentsAccordionLazyRoute:
     AuthenticatedUiComponentsAccordionLazyRoute,
   AuthenticatedUiComponentsAlertDialogLazyRoute:

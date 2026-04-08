@@ -66,6 +66,42 @@
   --sidebar-foreground: oklch(1 0 0);
 }
 
+.theme-purple {
+  --primary: oklch(0.55 0.22 300);
+  --primary-foreground: oklch(1 0 0);
+}
+.dark .theme-purple, .theme-purple.dark {
+  --primary: oklch(0.65 0.2 300);
+  --primary-foreground: oklch(0.14 0 0);
+}
+
+.theme-blue {
+  --primary: oklch(0.54 0.18 255);
+  --primary-foreground: oklch(1 0 0);
+}
+.dark .theme-blue, .theme-blue.dark {
+  --primary: oklch(0.65 0.16 255);
+  --primary-foreground: oklch(0.14 0 0);
+}
+
+.theme-green {
+  --primary: oklch(0.58 0.15 150);
+  --primary-foreground: oklch(1 0 0);
+}
+.dark .theme-green, .theme-green.dark {
+  --primary: oklch(0.65 0.14 150);
+  --primary-foreground: oklch(0.14 0 0);
+}
+
+.theme-orange {
+  --primary: oklch(0.62 0.18 50);
+  --primary-foreground: oklch(1 0 0);
+}
+.dark .theme-orange, .theme-orange.dark {
+  --primary: oklch(0.7 0.16 50);
+  --primary-foreground: oklch(0.14 0 0);
+}
+
 @theme inline {
   --font-sans: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
 

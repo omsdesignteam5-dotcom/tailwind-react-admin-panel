@@ -53,6 +53,27 @@ npm run dev
 npm run build
 ```
 
+## အရောင်ပြင်ဆင်ခြင်း (Customizing Theme Colors)
+
+ခလုတ် (Buttons) များ၊ Link များနှင့် အခြား UI Component များ၏ အဓိကအရောင် (Primary Color) ကို ပြောင်းလဲလိုပါက **`src/styles/theme.css`** ဖိုင်တွင် ဝင်ရောက်ပြင်ဆင်နိုင်ပါသည်။
+
+အောက်ပါ CSS Variable များ၏ တန်ဖိုး (oklch, hsl, မျှော်လင့်ထားသော အရောင် code) များကို မိမိနှစ်သက်ရာ အရောင်ဖြင့် ပြောင်းလဲပေးပါ -
+
+```css
+/* src/styles/theme.css */
+:root {
+  /* Light mode အရောင်ကို ဒီမှာပြောင်းပါ */
+  --primary: oklab(20.841% -0.00264 -0.04161);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+.dark {
+  /* Dark mode အရောင်ကို ဒီမှာပြောင်းပါ */
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.14 0 0);
+}
+```
+
 ---
 
 ## English Version
@@ -98,6 +119,27 @@ A modern, premium Admin Panel Template built specifically for scalability and pe
     ```bash
     npm run build
     ```
+
+### Customizing Theme Colors
+
+To change the primary color of buttons, links, and other UI components, you need to modify the **`src/styles/theme.css`** file.
+
+Update the values (oklch, hsl, or hex numeric code) of the following CSS variables to your desired color:
+
+```css
+/* src/styles/theme.css */
+:root {
+  /* Adjust light mode colors here */
+  --primary: oklab(20.841% -0.00264 -0.04161);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+.dark {
+  /* Adjust dark mode colors here */
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.14 0 0);
+}
+```
 
 ---
 
